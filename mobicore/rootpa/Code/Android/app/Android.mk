@@ -19,6 +19,10 @@ APP_PIE := true
 LOCAL_32_BIT_ONLY := true
 LOCAL_DEX_PREOPT := false
 
+LOCAL_SDK_VERSION := current
+LOCAL_MIN_SDK_VERSION := 21
+
+
 include $(BUILD_PACKAGE)
 
 include $(CLEAR_VARS)

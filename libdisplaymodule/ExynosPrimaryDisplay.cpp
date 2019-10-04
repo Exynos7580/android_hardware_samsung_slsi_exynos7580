@@ -262,8 +262,8 @@ void ExynosPrimaryDisplay::dump_win_config(struct decon_win_config *config)
                 cfg->dst.f_w, cfg->dst.f_h,
                 cfg->transparent_area.x, cfg->transparent_area.y,
                 cfg->transparent_area.w, cfg->transparent_area.h,
-                cfg->covered_opaque_area.x, cfg->covered_opaque_area.y,
-                cfg->covered_opaque_area.w, cfg->covered_opaque_area.h);
+                cfg->opaque_area.x, cfg->opaque_area.y,
+                cfg->opaque_area.w, cfg->opaque_area.h);
         }
     }
 }
@@ -428,7 +428,7 @@ int ExynosPrimaryDisplay::handleWindowUpdate(hwc_display_contents_1_t __unused *
         (config[winUpdateInfoIdx].dst.w != (uint32_t)mXres) || (config[winUpdateInfoIdx].dst.h != (uint32_t)mXres)) {
         for (size_t i = 0; i < NUM_HW_WINDOWS; i++) {
             memset(&config[i].transparent_area, 0, sizeof(config[i].transparent_area));
-            memset(&config[i].covered_opaque_area, 0, sizeof(config[i].covered_opaque_area));
+            memset(&config[i].opaque_area, 0, sizeof(config[i].opaque_area));
         }
     }
 
