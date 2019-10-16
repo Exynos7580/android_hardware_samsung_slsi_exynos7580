@@ -34,7 +34,7 @@
 #include "SecCameraConfig-common.h"
 #endif /* CAMERA_GED_FEATURE */
 
-#define SMDK7870
+//#define SMDK7870
 
 #ifndef USE_VENDOR_SPECIFIC_CONFIG_HEADER
 
@@ -42,7 +42,7 @@
 #define MONITOR_LOG_SYNC_INTERVAL 100
 
 #define USE_HAL3_2_METADATA_INTERFACE
-#define SUPPORT_HAL3_3_METADATA
+//#define SUPPORT_HAL3_3_METADATA
 
 #define USE_NEW_NOISE_REDUCTION_ALGORITHM
 
@@ -58,6 +58,15 @@
 
 #include <math.h>
 
+//try fix gsc rotation output
+//#define FRON_V_FLIP
+
+#define PERFRAME_CONTROL_FOR_FLIP
+
+#define USE_FRONT_FULL_OTF
+#define USE_REAR_FULL_OTF
+
+
 /************************************************/
 #ifdef CAMERA_GED_FEATURE
 #else
@@ -72,6 +81,7 @@
 
 #define EFFECT_VALUE_VERSION_2_0
 
+
 #define LCD_SIZE_DEFAULT                (0)
 #define LCD_SIZE_800_480                (1)
 #define LCD_SIZE_1280_720               (2)
@@ -79,7 +89,7 @@
 #define LCD_SIZE_2560_1440              (4)
 #define CAMERA_LCD_SIZE                 LCD_SIZE_1280_720
 
-/* #define LIMIT_SCP_SIZE_UNTIL_FHD_ON_CAPTURE */   /* Even if LCD is bigger than FHD, limit scp size until FHD on capture preview  */
+//#define LIMIT_SCP_SIZE_UNTIL_FHD_ON_CAPTURE    /* Even if LCD is bigger than FHD, limit scp size until FHD on capture preview  */
 #define LIMIT_SCP_SIZE_UNTIL_FHD_ON_RECORDING /* Even if LCD is bigger than FHD, limit scp size until FHD on recording preview*/
 
 #define CAMERA_BCROP_ALIGN              (16)
@@ -121,7 +131,7 @@
 #define RESERVED_MEMORY_ENABLE
 #endif
 
-#define RESERVED_BUFFER_COUNT_MAX       (0)
+#define RESERVED_BUFFER_COUNT_MAX       (5)
 
 /* #define USE_BNS_PREVIEW */ /* use BNS on capture scenario. this change LUT size */
 
@@ -131,9 +141,9 @@
 /* #define USE_BNS_DUAL_PREVIEW */ /* use bds on recording scenario. this change LUT size */
 /* #define USE_BNS_DUAL_RECORDING */ /* use bds on recording scenario. this change LUT size */
 
-/* #define USE_UHD_RECORDING */
+//#define USE_UHD_RECORDING
 /* #define USE_WQHD_RECORDING */
-/* #define FPS_CHECK */
+//#define FPS_CHECK
 #define FIRST_PREVIEW_TIME_CHECK /* to get time startPreview() ~ first preview frame q to hwc */
 #define USE_FD_AE
 #define FD_ROTATION                     (true)
@@ -208,7 +218,7 @@ enum {
 #define DEFAULT_BNS_RATIO               (1)
 #endif
 
-#define USE_JPEG_HWFC                   (true)
+#define USE_JPEG_HWFC                   (false)
 
 #define USE_PURE_BAYER_REPROCESSING                    (false)
 #define USE_PURE_BAYER_REPROCESSING_ON_RECORDING       (false)
@@ -233,8 +243,8 @@ enum {
 #define USE_DYNAMIC_BAYER_FRONT                 (false)
 #define USE_DYNAMIC_BAYER_VIDEO_SNAP_SHOT_FRONT (false)
 
-#define USE_YUV_REPROCESSING                    (true)
-#define USE_YUV_REPROCESSING_FOR_THUMBNAIL      (true)
+#define USE_YUV_REPROCESSING                    (false)
+#define USE_YUV_REPROCESSING_FOR_THUMBNAIL      (false)
 
 enum REPROCESSING_BAYER_MODE {
     REPROCESSING_BAYER_MODE_NONE            = 0, /* This means capture do not use reprocessing */
@@ -253,25 +263,26 @@ enum REPROCESSING_BAYER_MODE {
 #define USE_DYNAMIC_SCC_REAR            (false)
 #define USE_DYNAMIC_SCC_FRONT           (false)
 
-#define USE_GSC_FOR_CAPTURE_BACK        (false)
-#define USE_GSC_FOR_CAPTURE_FRONT       (false)
+#define USE_GSC_FOR_CAPTURE_BACK        (true)
+#define USE_GSC_FOR_CAPTURE_FRONT       (true)
 
 #define MAX_SERIES_SHOT_COUNT           (1000)
 
 #define SENSOR_FW_PATH_BACK "/sys/class/camera/rear/rear_camfw"
 #define SENSOR_FW_PATH_FRONT "/sys/class/camera/front/front_camfw"
 
-#define TORCH_REAR_FILE_PATH "/sys/devices/14400000.fimc_is/torch/flash_torch_control"
+#define TORCH_REAR_FILE_PATH "/sys/class/camera/flash/rear_torch_flash"
 #define TORCH_FRONT_FILE_PATH "/sys/devices/14400000.fimc_is/torch/flash_torch_control"
 
 #define SUPPORT_64BITS
 
 #ifndef DEBUG_RAWDUMP
-#define CAMERA_PACKED_BAYER_ENABLE
+//#define CAMERA_PACKED_BAYER_ENABLE
 #endif
-/* #define USE_BUFFER_WITH_STRIDE */
+#define USE_BUFFER_WITH_STRIDE
 
-#define OWN_MCSC_HW                 (true)
+
+#define OWN_MCSC_HW                 (false)
 
 /* back */
 #define MAIN_CAMERA_FLITE_NUM                       FIMC_IS_VIDEO_SS0_NUM
@@ -281,12 +292,12 @@ enum REPROCESSING_BAYER_MODE {
 #define MAIN_CAMERA_DUAL_FLITE_3AA_OTF   (true)
 
 #define MAIN_CAMERA_SINGLE_3AA_ISP_OTF (true)
-#define MAIN_CAMERA_DUAL_3AA_ISP_OTF   (false)
+#define MAIN_CAMERA_DUAL_3AA_ISP_OTF   (true)
 
-#define MAIN_CAMERA_SINGLE_MCSC_VRA_OTF (false)
-#define MAIN_CAMERA_DUAL_MCSC_VRA_OTF   (false)
+#define MAIN_CAMERA_SINGLE_MCSC_VRA_OTF (true)
+#define MAIN_CAMERA_DUAL_MCSC_VRA_OTF   (true)
 
-#define MAIN_CAMERA_SINGLE_REPROCESSING  (true)
+#define MAIN_CAMERA_SINGLE_REPROCESSING  (false)
 #define MAIN_CAMERA_SINGLE_SCC_CAPTURE   (false)
 
 #define MAIN_CAMERA_DUAL_REPROCESSING    (false)
@@ -300,19 +311,19 @@ enum REPROCESSING_BAYER_MODE {
 #define FRONT_CAMERA_HAS_OWN_SCC    (false)
 
 #define FRONT_CAMERA_SINGLE_FLITE_3AA_OTF (true)
-#define FRONT_CAMERA_DUAL_FLITE_3AA_OTF   (false)
+#define FRONT_CAMERA_DUAL_FLITE_3AA_OTF   (true)
 
 #define FRONT_CAMERA_SINGLE_3AA_ISP_OTF (true)
 #define FRONT_CAMERA_DUAL_3AA_ISP_OTF   (true)
 
-#define FRONT_CAMERA_SINGLE_MCSC_VRA_OTF (false)
-#define FRONT_CAMERA_DUAL_MCSC_VRA_OTF   (false)
+#define FRONT_CAMERA_SINGLE_MCSC_VRA_OTF (true)
+#define FRONT_CAMERA_DUAL_MCSC_VRA_OTF   (true)
 
-#define FRONT_CAMERA_SINGLE_REPROCESSING  (true)
+#define FRONT_CAMERA_SINGLE_REPROCESSING  (false)
 #define FRONT_CAMERA_SINGLE_SCC_CAPTURE   (false)
 
 #define FRONT_CAMERA_DUAL_REPROCESSING    (false)
-#define FRONT_CAMERA_DUAL_SCC_CAPTURE     (true)
+#define FRONT_CAMERA_DUAL_SCC_CAPTURE     (false)
 
 #define FRONT_CAMERA_SINGLE_3AA_ISP_OTF_REPROCESSING    (false)
 #define FRONT_CAMERA_DUAL_3AA_ISP_OTF_REPROCESSING      (false)
@@ -343,7 +354,7 @@ enum REPROCESSING_BAYER_MODE {
 #define INPUT_LEADER_SHIFT   0
 
 #define PREVIEW_GSC_NODE_NUM            (4)  /* 4 = MSC from Exynos5420 */
-#define PICTURE_GSC_NODE_NUM            (4)  /* 0,1,2 = GSC */
+#define PICTURE_GSC_NODE_NUM            (5)  /* 0,1,2 = GSC */
 #define VIDEO_GSC_NODE_NUM              (4)
 
 #if (SUPPORT_BACK_HW_VDIS || SUPPORT_FRONT_HW_VDIS)
@@ -357,8 +368,8 @@ enum REPROCESSING_BAYER_MODE {
 #define NUM_SENSOR_BUFFERS              (4 + REPROCESSING_BAYER_HOLD_COUNT)
 #define NUM_BAYER_BUFFERS               (4 + REPROCESSING_BAYER_HOLD_COUNT + SHOT_RECOVERY_COUNT)
 #define INIT_BAYER_BUFFERS              (4 + SHOT_RECOVERY_COUNT)
-#define NUM_3AA_BUFFERS                 NUM_BAYER_BUFFERS + 3
-#define NUM_HW_DIS_BUFFERS              (NUM_3AA_BUFFERS)
+#define NUM_3AA_BUFFERS                 NUM_BAYER_BUFFERS
+#define NUM_HW_DIS_BUFFERS              (NUM_3AA_BUFFERS + 3)
 #define NUM_VRA_BUFFERS                 (2)
 #define NUM_PREVIEW_BUFFERS             (9 + SHOT_RECOVERY_COUNT + 3)
 #define NUM_PREVIEW_SPARE_BUFFERS       (3)
@@ -386,33 +397,34 @@ enum REPROCESSING_BAYER_MODE {
 #define NUM_PREVIEW_BUFFERS_MARGIN      (1)
 #endif
 
+
 #ifdef CAMERA_GED_FEATURE
 #define RESERVED_NUM_BAYER_BUFFERS      (NUM_BAYER_BUFFERS)
-#define RESERVED_NUM_ISP_BUFFERS        (0)
+#define RESERVED_NUM_ISP_BUFFERS        (2)
 #else
 #ifdef DEBUG_RAWDUMP
 #define RESERVED_NUM_BAYER_BUFFERS      (0)
 #define RESERVED_NUM_ISP_BUFFERS        (0)
 #else
-#define RESERVED_NUM_BAYER_BUFFERS      (5)
-#define RESERVED_NUM_ISP_BUFFERS        (3)
+#define RESERVED_NUM_BAYER_BUFFERS      (3)
+#define RESERVED_NUM_ISP_BUFFERS        (2)
 #endif /* DEBUG_RAWDUMP */
 #endif
 
-#define PIPE_FLITE_PREPARE_COUNT            (3)
+#define PIPE_FLITE_PREPARE_COUNT            (0)
 #define PIPE_3AC_PREPARE_COUNT              (3)
 #define PIPE_3AA_ISP_PREPARE_COUNT          (3)
 #define PIPE_ISP_PREPARE_COUNT              (0)
 #define PIPE_SCC_PREPARE_COUNT              (1)
 #define PIPE_SCP_PREPARE_COUNT              (3)
 
-#define PIPE_FLITE_FRONT_PREPARE_COUNT      (3)
+#define PIPE_FLITE_FRONT_PREPARE_COUNT      (0)
 #define PIPE_SCC_FRONT_PREPARE_COUNT        (1)
 #define PIPE_SCP_FRONT_PREPARE_COUNT        (3)
 #define PIPE_SCP_REPROCESSING_PREPARE_COUNT (3)
 #define PIPE_SCC_REPROCESSING_PREPARE_COUNT (1)
 
-#define NUM_FRAME_PREPARE_COUNT         (6)
+#define NUM_FRAME_PREPARE_COUNT         (5)
 #define NUM_BURST_GSC_JPEG_INIT_BUFFER  (4) /* Number of pre-allicated buffer for burst shot
                                                Increasing this number will increase takePicture()'s
                                                response time. Currently it is defined as
@@ -429,7 +441,7 @@ enum REPROCESSING_BAYER_MODE {
 #define FRONT_RESERVED_NUM_BAYER_BUFFERS        (0)
 #define FRONT_RESERVED_NUM_ISP_BUFFERS          (0)
 #else
-#define FRONT_RESERVED_NUM_BAYER_BUFFERS        (6)
+#define FRONT_RESERVED_NUM_BAYER_BUFFERS        (4)
 #define FRONT_RESERVED_NUM_ISP_BUFFERS          (0)
 #endif /* DEBUG_RAWDUMP */
 
@@ -496,11 +508,11 @@ enum REPROCESSING_BAYER_MODE {
 
 #define FRAME_MIN_NUM (3)
 
-#define EXYNOS_CAMERA_BUFFER_MAX_PLANES (5)     /* img buffer 4 + metadata 1 */
+#define EXYNOS_CAMERA_BUFFER_MAX_PLANES (4)     /* img buffer 4 + metadata 1 */
 #define EXYNOS_CAMERA_META_PLANE_SIZE   (32 * 1024)
 #define GRALLOC_LOCK_FOR_CAMERA         (GRALLOC_SET_USAGE_FOR_CAMERA)
 
-#define EXYNOS_CAMERA_PREVIEW_FPS_REFERENCE  (60)
+#define EXYNOS_CAMERA_PREVIEW_FPS_REFERENCE  (25)
 
 #define  NUM_OF_DETECTED_FACES           (16)
 #define  NUM_OF_DETECTED_FACES_THRESHOLD (0)
@@ -763,7 +775,7 @@ struct addrs {
 #define SENSOR_OVERFLOW_CHECK
 
 /* for test */
-/* #define SCALABLE_ON */
+//#define SCALABLE_ON
 /* #define TEST_GED_HIGH_SPEED_RECORDING */
 /* #define TEST_APP_HIGH_SPEED_RECORDING */ /* for ArtCamera */
 /* #define FORCE_RESET_MULTI_FRAME_FACTORY */
