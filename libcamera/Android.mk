@@ -51,15 +51,15 @@ ifeq ($(BOARD_CAMERA_GED_FEATURE), true)
 LOCAL_CFLAGS += -DCAMERA_GED_FEATURE
 endif
 
-LOCAL_CFLAGS += -D$(shell echo $(project_camera) | tr a-z A-Z)_CAMERA
+LOCAL_CFLAGS += -D$(shell echo $(project_camera) | tr a-z A-Z)_CAMERA -Wno-date-time
 
 LOCAL_C_INCLUDES += \
 	$(LOCAL_PATH)/../include \
 	$(LOCAL_PATH)/../libcamera \
 	$(LOCAL_PATH)/../libcamera/SensorInfos \
 	$(TOP)/system/media/camera/include \
-	$(TOP)/system/core/libion/include \
 	$(TOP)/hardware/samsung_slsi/exynos/libcamera/34xx \
+        $(TOP)/hardware/samsung_slsi/exynos/libcamera/34xx/JpegEncoderForCamera \
 	$(TOP)/hardware/samsung_slsi/exynos/libcamera/34xx/hal1 \
 	$(TOP)/hardware/samsung_slsi/exynos/libcamera/common_v2 \
 	$(TOP)/hardware/samsung_slsi/exynos/libcamera/common_v2/SensorInfos \
@@ -72,7 +72,6 @@ LOCAL_C_INCLUDES += \
 	$(TOP)/hardware/samsung_slsi/$(TARGET_SOC)/include \
 	$(TOP)/hardware/samsung_slsi/$(TARGET_BOARD_PLATFORM)/include \
 	$(TOP)/hardware/samsung_slsi/$(TARGET_BOARD_PLATFORM)/libcamera \
-	$(TOP)/hardware/samsung_slsi/exynos7570/libcamera \
 	$(TOP)/hardware/libhardware_legacy/include/hardware_legacy \
 	$(TOP)/vendor/samsung/feature/CscFeature/libsecnativefeature \
 	$(TOP)/bionic \
@@ -117,6 +116,7 @@ LOCAL_SRC_FILES:= \
 	../../exynos/libcamera/34xx/hal1/ExynosCameraSizeControl.cpp \
 	../../exynos/libcamera/34xx/ExynosCameraActivityControl.cpp\
 	../../exynos/libcamera/34xx/ExynosCameraScalableSensor.cpp \
+        ../../exynos/libcamera/34xx/JpegEncoderForCamera/ExynosJpegEncoderForCamera.cpp \
 	../../exynos/libcamera/34xx/hal1/ExynosCamera.cpp \
 	../../exynos/libcamera/34xx/hal1/ExynosCamera1Parameters.cpp \
 	../../exynos/libcamera/34xx/hal1/ExynosCameraFrameFactory.cpp \
